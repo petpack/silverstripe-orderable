@@ -10,7 +10,7 @@ class Orderable extends DataObjectDecorator {
 		return array('db' => array('Sort' => 'Int'));
 	}
 
-	public function augmentSQL($query) {
+	public function augmentSQL(SQLQuery &$query) {
 		if (!$query->orderby && !$query->delete) $query->orderby('"Sort"');
 	}
 
@@ -23,11 +23,11 @@ class Orderable extends DataObjectDecorator {
 		}
 	}
 
-	public function updateCMSFields($fields) {
+	public function updateCMSFields(FieldSet &$fields) {
 		$fields->removeByName('Sort');
 	}
 
-	public function updateFrontEndFields($fields) {
+	public function updateFrontEndFields(FieldSet &$fields) {
 		$fields->removeByName('Sort');
 	}
 
